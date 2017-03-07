@@ -140,10 +140,15 @@ data1 = data.groupby('PID').count()
 data1.reset_index(level=0 , inplace=True)
 data1.describe()
 
-data1[data1['CID'] >= ]['PID'].describe()
+data1[data1['CID'] >= 42.0 ]['PID'].describe()
 data1[data1['CID'] <= 42.0 ]['PID'].describe()
 
-sb.jointplot(x = 'PID' ,y = 'CID' , data = data1  , kind = 'reg')
+sb.jointplot(x = 'PID' ,y = 'CID' , data = data1 )
+
+data['TD'].describe()
+data_tid_max = data[data['TD'] < '430 days 10:30:00']
+data_tid_max = data_tid_max[data_tid_max['TD'] < '280 days 05:30:00']
+data_tid_max['TD'].describe()
 
 
 
