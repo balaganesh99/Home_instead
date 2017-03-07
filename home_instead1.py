@@ -132,7 +132,19 @@ p_year_month.fillna(0)
 
 mplt.figure(figsize=(12,6))
 sb.heatmap(p_year_month,cmap='viridis')
-sb.clustermap(p_year_month,cmap='viridis')
+mplt.show()
+
+
+# Analysis 2
+data1 = data.groupby('PID').count()
+data1.reset_index(level=0 , inplace=True)
+data1.describe()
+
+data1[data1['CID'] >= ]['PID'].describe()
+data1[data1['CID'] <= 42.0 ]['PID'].describe()
+
+sb.jointplot(x = 'PID' ,y = 'CID' , data = data1  , kind = 'reg')
+
 
 
 
