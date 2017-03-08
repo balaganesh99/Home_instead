@@ -134,6 +134,27 @@ p_year_month.fillna(0)
 
 mplt.figure(figsize=(12,6))
 sb.heatmap(p_year_month,cmap='viridis')
+<<<<<<< HEAD
+=======
+mplt.show()
+
+
+# Analysis 2
+data1 = data.groupby('PID').count()
+data1.reset_index(level=0 , inplace=True)
+data1.describe()
+
+data1[data1['CID'] >= 42.0 ]['PID'].describe()
+data1[data1['CID'] <= 42.0 ]['PID'].describe()
+
+sb.jointplot(x = 'PID' ,y = 'CID' , data = data1 )
+
+data['TD'].describe()
+data_tid_max = data[data['TD'] < '430 days 10:30:00']
+data_tid_max = data_tid_max[data_tid_max['TD'] < '280 days 05:30:00']
+data_tid_max['TD'].describe()
+
+>>>>>>> bade7423a114630be47a9d08bdef0f5d2fdc80ca
 
 
 # Analysis 2
