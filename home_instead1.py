@@ -1,26 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 06 14:28:17 2017
-
-@author: Balaganesh
-"""
-#importing pandas .... 
-
 import pandas as pd
-
-#importing numpy ....
-
 import numpy as np
-
-#importing seaborn for advance visualization...
-
 import seaborn as sb
-sb.set_style('whitegrid')
-
-
-#importing matplotlib for adavcnce plotting...
-
 import matplotlib.pyplot as mplt
+sb.set_style('whitegrid')
 
 #reading data from local machine
 
@@ -66,12 +48,6 @@ data['day'].value_counts()
 data['year'].value_counts()
 
 #plotting the outcomes of the basic analysis....
-# we will be using seaborn analysis to get good visualization on the extracted analysis
-# 1. To see the number of appointments per day / month / hour
- 
- #sb.countplot(x='month',data=data, hue ='CID',palette='viridis')
-#mplt.legend(bbox_to_anchor = (1.05,1 ) , loc=2 , borderaxespad = 0.)
-
 #number of customers apooitnment per year
 d_year = data.groupby('year').count()
 d_year.reset_index(level = 0 , inplace = True)
@@ -134,28 +110,13 @@ p_year_month.fillna(0)
 
 mplt.figure(figsize=(12,6))
 sb.heatmap(p_year_month,cmap='viridis')
-<<<<<<< HEAD
-=======
-mplt.show()
-
 
 # Analysis 2
 data1 = data.groupby('PID').count()
 data1.reset_index(level=0 , inplace=True)
 data1.describe()
-
-data1[data1['CID'] >= 42.0 ]['PID'].describe()
-data1[data1['CID'] <= 42.0 ]['PID'].describe()
-
 sb.jointplot(x = 'PID' ,y = 'CID' , data = data1 )
-
 data['TD'].describe()
-data_tid_max = data[data['TD'] < '430 days 10:30:00']
-data_tid_max = data_tid_max[data_tid_max['TD'] < '280 days 05:30:00']
-data_tid_max['TD'].describe()
-
->>>>>>> bade7423a114630be47a9d08bdef0f5d2fdc80ca
-
 
 # Analysis 2
 data1 = data.groupby('PID').count()
@@ -163,18 +124,11 @@ data2 = data.groupby('CID').count()
 data1.reset_index(level=0 , inplace=True)
 data2.reset_index(level=0 , inplace=True)
 data1.describe()
-
-data1[data1['CID'] >= 42.0 ]['PID'].describe()
-data1[data1['CID'] <= 42.0 ]['PID'].describe()
-
 sb.jointplot(x = 'PID' ,y = 'CID' , data = data1 )
-
 data['TD'].describe()
 data_tid_max = data[data['TD'] < '430 days 10:30:00'
 data_tid_max = data_tid_max[data_tid_max['TD'] < '280 days 05:30:00']
-
 data_tid_max
-
 data_tid_max['TD'].describe()
 
 # analysis of each quarlite of the ideal appoitnment time for each quartile
@@ -186,22 +140,17 @@ data2['CID'].describe()
 data.describe()
 data['TD'].describe()
 
-
 #Quartiles of time difference to calculate the ideal time for an appoitnment 
 #1st quartile
-
 data[(data['TD'] >= '0 days 00:00:00') & (data['TD'] <= '0 days 02:55:00') ].describe()
 
 #2nd quartile 
-
 data[(data['TD'] > '0 days 02:55:00') & (data['TD'] <= '0 days 04:00:00') ].describe()
 
 #3rd Quartile
-
 data[(data['TD'] > '0 days 04:00:00') & (data['TD'] <= '0 days 06:00:00') ].describe()
 
 #4th quartile
-
 data[(data['TD'] > '0 days 06:00:00') & (data['TD'] <= '430 days 10:30:00') ].describe()
 
 
