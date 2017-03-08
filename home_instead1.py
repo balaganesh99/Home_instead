@@ -155,7 +155,7 @@ data[(data['TD'] > '0 days 06:00:00') & (data['TD'] <= '430 days 10:30:00') ].de
 
 
 # number of customers each year
-d_year[d_year['year'] == 2010]hour
+d_year[d_year['year'] == 2010]
 d_year[d_year['year'] == 2011]
 d_year[d_year['year'] == 2012]
 d_year[d_year['year'] == 2013]
