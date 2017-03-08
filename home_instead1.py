@@ -41,7 +41,8 @@ data = data.drop('ID' , 1)
 
 data.info()
 data.describe()
-
+data.isnull()
+data.isna()
 # converting the timestamp values to seperate columns for clear understanding of Time driven data
 
 time = data['start'].iloc[0]
@@ -73,6 +74,7 @@ data['year'].value_counts()
 
 #number of customers apooitnment per year
 d_year = data.groupby('year').count()
+d_year.reset_index(level = 0 , inplace = True)
 d_year['CID'].plot()
 
 #numbre of customers appointment per day
@@ -132,8 +134,65 @@ p_year_month.fillna(0)
 
 mplt.figure(figsize=(12,6))
 sb.heatmap(p_year_month,cmap='viridis')
-sb.clustermap(p_year_month,cmap='viridis')
 
+
+# Analysis 2
+data1 = data.groupby('PID').count()
+data2 = data.groupby('CID').count()
+data1.reset_index(level=0 , inplace=True)
+data2.reset_index(level=0 , inplace=True)
+data1.describe()
+
+data1[data1['CID'] >= 42.0 ]['PID'].describe()
+data1[data1['CID'] <= 42.0 ]['PID'].describe()
+
+sb.jointplot(x = 'PID' ,y = 'CID' , data = data1 )
+
+data['TD'].describe()
+data_tid_max = data[data['TD'] < '430 days 10:30:00'
+data_tid_max = data_tid_max[data_tid_max['TD'] < '280 days 05:30:00']
+
+data_tid_max
+
+data_tid_max['TD'].describe()
+
+# analysis of each quarlite of the ideal appoitnment time for each quartile
+data.describe()
+data.info()
+data1['PID'].describe()
+data1
+data2['CID'].describe()
+data.describe()
+data['TD'].describe()
+
+
+#Quartiles of time difference to calculate the ideal time for an appoitnment 
+#1st quartile
+
+data[(data['TD'] >= '0 days 00:00:00') & (data['TD'] <= '0 days 02:55:00') ].describe()
+
+#2nd quartile 
+
+data[(data['TD'] > '0 days 02:55:00') & (data['TD'] <= '0 days 04:00:00') ].describe()
+
+#3rd Quartile
+
+data[(data['TD'] > '0 days 04:00:00') & (data['TD'] <= '0 days 06:00:00') ].describe()
+
+#4th quartile
+
+data[(data['TD'] > '0 days 06:00:00') & (data['TD'] <= '430 days 10:30:00') ].describe()
+
+
+# number of customers each year
+d_year[d_year['year'] == 2010]hour
+d_year[d_year['year'] == 2011]
+d_year[d_year['year'] == 2012]
+d_year[d_year['year'] == 2013]
+d_year[d_year['year'] == 2014]
+d_year[d_year['year'] == 2015]
+d_year[d_year['year'] == 2016]
+d_year[d_year['year'] == 2017]
 
 
 
